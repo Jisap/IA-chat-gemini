@@ -56,8 +56,22 @@ const Register = () => {
               >
                 Create account
               </Button>
+
+              <p>
+                Already have an account?
+                <Link t
+                  to="/login"
+                  className=''
+                >
+                  Sign in
+                </Link>
+              </p>
             </Form>
           </div>
+
+          <p>
+            &copy; 2024 All rights reserved
+          </p>
         </div>
       </div>
     </>
