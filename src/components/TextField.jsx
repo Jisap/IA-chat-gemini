@@ -36,7 +36,7 @@ const TextField = ({
   )
 }
 
-TextField.PropTypes = {
+TextField.propTypes = {
   classes: PropTypes.string,
   helperText: PropTypes.string,
   label: PropTypes.string,

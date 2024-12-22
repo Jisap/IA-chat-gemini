@@ -1,7 +1,7 @@
 import React from 'react'
 import PageTitle from '../components/PageTitle'
 import { Link, Form } from 'react-router-dom'
-import { logoDark, logoLight } from '../assets/assets'
+import { logoDark, logoLight, banner } from '../assets/assets'
 import TextField from '../components/TextField'
 import { Button } from '../components/Button'
 
@@ -10,11 +10,12 @@ const Register = () => {
   return (
     <>
       <PageTitle title="Create an account" />
-      <div>
+
+      <div className='relative w-screen h-dvh p-2 grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2'>
         <div>
           <Link>
             <img src={logoLight} alt="logo light" width={133} height={24} />
-            <img src={logoDark} alt="logo dark" width={133} height={24}/>
+            <img src={logoDark} alt="logo dark" width={133} height={24} />
           </Link>
 
           <div>
@@ -41,7 +42,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 label="Email"
-                placeholder="Email" 
+                placeholder="Email"
                 required={true}
               />
               <TextField
@@ -71,6 +72,17 @@ const Register = () => {
 
           <p>
             &copy; 2024 All rights reserved
+          </p>
+        </div>
+
+        <div>
+          <img
+            src={banner}
+            alt=""
+            className='img-cover'
+          />
+          <p>
+            Chat with Phoenix to supercharge your ideas.
           </p>
         </div>
       </div>
