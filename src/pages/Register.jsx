@@ -3,6 +3,8 @@ import PageTitle from '../components/PageTitle'
 import { Link, Form } from 'react-router-dom'
 import { logoDark, logoLight } from '../assets/assets'
 import TextField from '../components/TextField'
+import { Button } from '../components/Button'
+
 
 const Register = () => {
   return (
@@ -46,9 +48,14 @@ const Register = () => {
                 type="password"
                 name="password"
                 label="Password"
-                placeholder="Password"
+                placeholder="Enter your password"
                 required={true}
               />
+              <Button
+                type="submit"
+              >
+                Create account
+              </Button>
             </Form>
           </div>
         </div>
