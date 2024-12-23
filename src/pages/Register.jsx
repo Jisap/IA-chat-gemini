@@ -36,7 +36,7 @@ const Register = () => {
                 placeholder="Full name"
                 required={true}
                 autoFocus={true}
-                helperText="some helper text"
+                //helperText="some helper text"
               />
               <TextField
                 type="email"
@@ -59,11 +59,11 @@ const Register = () => {
                 Create account
               </Button>
 
-              <p>
+              <p className='text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4'>
                 Already have an account?
                 <Link 
                   to="/login"
-                  className=''
+                  className='link inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
                 >
                   Sign in
                 </Link>
