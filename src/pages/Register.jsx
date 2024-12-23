@@ -36,7 +36,7 @@ const Register = () => {
                 placeholder="Full name"
                 required={true}
                 autoFocus={true}
-                classes=''
+                helperText="some helper text"
               />
               <TextField
                 type="email"
@@ -60,7 +60,7 @@ const Register = () => {
 
               <p>
                 Already have an account?
-                <Link t
+                <Link 
                   to="/login"
                   className=''
                 >

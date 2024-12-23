@@ -59,27 +59,54 @@
 
   .text-field {
     @apply ring-1 ring-inset 
-     ring-light-outline
+     ring-light-outline                     /* colores ring */
      dark:ring-dark-outline bg-inherit
-     text-light-onSurface 
+     text-light-onSurface                   /* colores texto */
      dark:text-dark-onSurface 
-     caret-light-primary 
-     dark:caret-dark-primary
-     h-14 px-4 rounded-extraSmall transition-shadow duration-short3 ease-linear
-     hover:ring-light-onSurface
+     caret-light-primary                    /* colores cursor */
+     dark:caret-dark-primary         
+     h-14 px-4 rounded-extraSmall transition-shadow duration-short3 ease-linear /* transiciones suaves para sombras*/
+     hover:ring-light-onSurface             /* colores para hover:ring*/
      hover:dark:ring-dark-onSurface
      focus:ring-2
-     focus:ring-light-primary
+     focus:ring-light-primary               /* colores para focus:ring*/
      focus:dark:ring-dark-primary;
   }
 
   .text-field::placeholder{
-    @apply opacity-0 transition-opacity;
+    @apply opacity-0 transition-opacity;      /* el texto de placeholder no se ve por defecto, pero se agrega una transición suave cuando la opacidad cambia. */
   }
 
-  .text-field:focus::placeholder{
+  .text-field:focus::placeholder{             /* el texto de placeholder se ve cuando el input tiene el foco */
     @apply opacity-100;
   }
 
+  .label-text {
+    @apply absolute text-labelLarge top-[18px] left-2
+    text-light-onSurfaceVariant
+    dark:text-dark-onSurfaceVariant
+    bg-light-background
+    dark:bg-dark-background
+    px-2 origin-[center_left]                                      /* Establece el punto de transformación en el centro izquierdo de la etiqueta. */ 
+    pointer-events-none select-none 
+    transition-[color,transform] duration-short4 ease-standard;    /* Se animan los cambios en el color y la transformación. */
+  }
 
+  .text-field-wrapper:hover .label-text {
+    @apply text-light-onSurface dark:text-dark-onSurface       /* Cambia el color del texto de la etiqueta al pasar el ratón sobre el contenedor. */
+  }
+
+  .text-field-wrapper:focus-within .label-text,                                /* Aplica estilos cuando cualquier elemento dentro del contenedor está enfocado. */
+  .text-field-wrapper:has(.text-field:not(:placeholder-shown)) .label-text {   /* Aplica estilos si el campo de texto no está vacío. */
+    @apply translate-x-0.5 -translate-y-7 scale-[0.85]                         /*  Desplaza ligeramente hacia la derecha, mueve hacia arriba para simular un "elevado" y reduce el tamaño de la etiqueta. */
+  }
+
+  .text-field-wrapper:focus-within .label-text {
+    @apply text-light-primary dark:text-dark-primary;          /* Colores en focus: Cambia el color del texto al color principal del tema al enfocar. */
+  }
+
+  .text-field-wrapper .helper-text {
+    @apply text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant     /* Colores de texto de ayuda */
+    px-4 pt-1 text-bodySmall;
+  } 
 }
