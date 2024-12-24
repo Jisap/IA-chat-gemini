@@ -19,7 +19,7 @@ const Register = () => {
 
   useEffect(() => {
     if(error?.message){
-      showSnackbar({ message: error.message, type: 'error' })
+      showSnackbar({ message: error.message, type: 'error', timeout: 5000 })
     }
   },[error, showSnackbar])
 
