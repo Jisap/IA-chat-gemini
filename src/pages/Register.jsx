@@ -1,6 +1,6 @@
 import React from 'react'
 import PageTitle from '../components/PageTitle'
-import { Link, Form } from 'react-router-dom'
+import { Link, Form, useNavigation } from 'react-router-dom'
 import { logoDark, logoLight, banner } from '../assets/assets'
 import TextField from '../components/TextField'
 import { Button } from '../components/Button'
@@ -8,6 +8,9 @@ import { Button } from '../components/Button'
 
 
 const Register = () => {
+
+  const navigation = useNavigation(); // Devuelve el objeto de navegación que contiene elementos como goBack, navigate, etc.
+
   return (
     <>
       <PageTitle title="Create an account" />
@@ -55,9 +58,13 @@ const Register = () => {
               />
               <Button
                 type="submit"
-                //disabled={true} 
+                disabled={navigation.state === "submitting"}
               >
-                Create account
+                {navigation.state === "submitting" ? (
+                  "Submitting..."
+                ):(
+                  "Create account"
+                )}
               </Button>
 
               <p className='text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4'>

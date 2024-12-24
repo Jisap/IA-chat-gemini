@@ -1,11 +1,12 @@
 
+import { redirect } from 'react-router-dom';
 import { account } from '../../lib/appwrite'
 import generateID from '../../utils/generateID';
 
 const registerAction = async ({ request }) => {
 
   const formData = await request.formData();
-  
+
   const name = formData.get('name');
   const email = formData.get('email');
   const password = formData.get('password');
@@ -30,7 +31,19 @@ const registerAction = async ({ request }) => {
       message: error.message,
     }
   }
-  return null
+
+  try {
+    await account.createEmailPasswordSession(
+      email,
+      password,
+    )
+  } catch (error) {
+    console.log(`Error creating email session: ${error.message}`);
+    return redirect("/login")
+  }
+
+
+  return redirect("/")
 }
 
 export default registerAction
