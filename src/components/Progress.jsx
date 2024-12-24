@@ -20,4 +20,4 @@ CircularProgress.propTypes = {
   size: PropTypes.string,
 }
 
-export default CircularProgress
+export { CircularProgress }

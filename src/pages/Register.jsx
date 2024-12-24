@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PageTitle from '../components/PageTitle'
-import { Link, Form, useNavigation } from 'react-router-dom'
+import { Link, Form, useNavigation, useActionData } from 'react-router-dom'
 import { logoDark, logoLight, banner } from '../assets/assets'
 import TextField from '../components/TextField'
 import { Button } from '../components/Button'
-
+import { CircularProgress } from '../components/Progress'
 
 
 const Register = () => {
 
+  const error = useActionData();      // Usa el hook useActionData para obtener los datos de la acción
   const navigation = useNavigation(); // Devuelve el objeto de navegación que contiene elementos como goBack, navigate, etc.
+
+  useEffect(() => {
+
+  },[error])
 
   return (
     <>
@@ -61,7 +66,7 @@ const Register = () => {
                 disabled={navigation.state === "submitting"}
               >
                 {navigation.state === "submitting" ? (
-                  "Submitting..."
+                  <CircularProgress size="small" />
                 ):(
                   "Create account"
                 )}
