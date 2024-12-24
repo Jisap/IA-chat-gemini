@@ -5,6 +5,9 @@ import { logoDark, logoLight, banner } from '../assets/assets'
 import TextField from '../components/TextField'
 import { Button } from '../components/Button'
 import { CircularProgress } from '../components/Progress'
+import { useSnackbar } from '../hooks/useSnackbar'
+
+
 
 
 const Register = () => {
@@ -12,9 +15,13 @@ const Register = () => {
   const error = useActionData();      // Usa el hook useActionData para obtener los datos de la acción
   const navigation = useNavigation(); // Devuelve el objeto de navegación que contiene elementos como goBack, navigate, etc.
 
-  useEffect(() => {
+  const { showSnackbar } = useSnackbar();
 
-  },[error])
+  useEffect(() => {
+    if(error?.message){
+      showSnackbar({ message: error.message, type: 'error' })
+    }
+  },[error, showSnackbar])
 
   return (
     <>
