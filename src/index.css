@@ -159,4 +159,21 @@
   :where(:focus, :focus-visible, :focus-within) > .state-layer { /*  el foco: el boton está enfocado, el foco visible: el foco es visible o el foco dentro de la capa: cualquier elemento hijo está enfocado.. */
     @apply opacity-[0.1]                        /* Incrementa la opacidad de la capa al 10%, enfatizando que el botón está activo o seleccionado. */
   }
+
+  .link {
+    @apply transition-colors duration-short3 ease-standard
+    hover:text-light-primary
+    dark:hover:text-dark-primary
+    hover:underline;
+  }
+}
+
+@layer utilities {
+  .img.box {
+    @apply bg-light-surfaceContainerHighest dark:bg-dark-surfaceContainerHighest overflow-hidden
+  }
+
+  .img-cover {
+    @apply w-full h-full object-cover;
+  }
 }

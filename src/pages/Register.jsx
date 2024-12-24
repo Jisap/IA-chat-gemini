@@ -71,18 +71,19 @@ const Register = () => {
             </Form>
           </div>
 
-          <p>
+          <p className='mt-auto mx-auto text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-bodyMedium lg:mx-0'>
             &copy; 2024 All rights reserved
           </p>
         </div>
 
-        <div>
+        <div className='hidden img-box lg:block lg:relative lg:rounded-large'>
           <img
             src={banner}
             alt=""
             className='img-cover'
           />
-          <p>
+          <p className='absolute bottom-10 left-12 right-12 z-10 text-displayLarge font-semibold leading-tight
+          text-right text-light-onSurfaceVariant drops-shadow-sm 2xl:text-[72px]'>
             Chat with Phoenix to supercharge your ideas.
           </p>
         </div>
