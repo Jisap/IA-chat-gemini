@@ -2,6 +2,7 @@
 
 import { createContext, useState, useRef, useCallback, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
+import Snackbar from '../components/Snackbar';
 
 
 const initialCtxValue = {
@@ -51,6 +52,7 @@ const SnackbarProvider = ({ children }) => {
   return (
     <SnackbarContext.Provider value={contextValue}>
       {children}
+      <Snackbar snackbar={snackbar} />
     </SnackbarContext.Provider>
   )
 }
