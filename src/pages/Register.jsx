@@ -13,7 +13,7 @@ const Register = () => {
 
       <div className='relative w-screen h-dvh p-2 grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2'>
         <div className='flex flex-col p-4'>
-          <Link to='/' className='max-w-max mx-auto lg:mx-0'>
+          <Link to='/' className='max-w-max mb-auto mx-auto lg:mx-0'>
             <img src={logoLight} alt="logo light" width={133} height={24} className='dark:hidden' />
             <img src={logoDark} alt="logo dark" width={133} height={24} className='hidden dark:block'/>
           </Link>
@@ -83,7 +83,7 @@ const Register = () => {
             className='img-cover'
           />
           <p className='absolute bottom-10 left-12 right-12 z-10 text-displayLarge font-semibold leading-tight
-          text-right text-light-onSurfaceVariant drops-shadow-sm 2xl:text-[72px]'>
+          text-right text-light-onSurface drops-shadow-sm 2xl:text-[72px]'>
             Chat with Phoenix to supercharge your ideas.
           </p>
         </div>
