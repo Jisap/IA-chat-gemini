@@ -9,3 +9,5 @@ client.setProject(appWriteProjectId)
  .setEndpoint(appWriteProjectEndpoint)
 
 const account = new account(client);
+
+export  { account }
