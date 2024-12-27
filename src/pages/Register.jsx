@@ -15,11 +15,11 @@ const Register = () => {
   const error = useActionData();      // Usa el hook useActionData para obtener los datos de la acción
   const navigation = useNavigation(); // Devuelve el objeto de navegación que contiene elementos como goBack, navigate, etc.
 
-  const { showSnackbar } = useSnackbar();
+  const { showSnackbar } = useSnackbar(); // Hook que nos permite acceder al estado del snackbar
 
   useEffect(() => {
     if(error?.message){
-      showSnackbar({ message: error.message, type: 'error', timeout: 5000 })
+      showSnackbar({ message: error.message, type: 'error' })
     }
   },[error, showSnackbar])
 
