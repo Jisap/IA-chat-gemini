@@ -62,6 +62,14 @@
     @apply border-[3px] w-5 h-5;
   }
 
+  .linear-progress {
+    @apply h-1 bg-light-secondaryContainer dark:bg-dark-secondaryContainer rounded-full mx-1 overflow-hidden origin-top;
+  }
+
+  .linear-progress .active-indicator {
+    @apply h-[inherit] bg-light-primary dark:bg-dark-primary rounded-full origin-right -translate-x-full
+  }
+
   .snackbar {
     @apply fixed bottom-4 left-4 right-4
     bg-light-inverseSurface 

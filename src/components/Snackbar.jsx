@@ -1,7 +1,7 @@
 
 
 import PropTypes from "prop-types";
-import { motion, animatePresence, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 const Snackbar = ({ snackbar }) => {

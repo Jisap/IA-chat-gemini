@@ -4,10 +4,9 @@ import { Link, Form, useNavigation, useActionData } from 'react-router-dom'
 import { logoDark, logoLight, banner } from '../assets/assets'
 import TextField from '../components/TextField'
 import { Button } from '../components/Button'
-import { CircularProgress } from '../components/Progress'
+import { CircularProgress, LinearProgress } from '../components/Progress'
 import { useSnackbar } from '../hooks/useSnackbar'
-
-
+import { AnimatePresence } from 'framer-motion'
 
 
 const Register = () => {
@@ -108,6 +107,12 @@ const Register = () => {
           </p>
         </div>
       </div>
+
+      <AnimatePresence>
+        {navigation.state === "loading" &&(
+            <LinearProgress classes='absolute top-0 left-0 right-0' />
+        )}
+      </AnimatePresence>
     </>
   )
 }
