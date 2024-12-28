@@ -82,7 +82,7 @@ const Register = () => {
                 Already have an account?
                 <Link 
                   to="/login"
-                  className='link inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
+                  className='link text-labelLarge inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
                 >
                   Sign in
                 </Link>

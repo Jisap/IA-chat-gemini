@@ -61,7 +61,7 @@ const Login = () => {
               />
 
               <div className='text-right'>
-                <Link to="/reset-link" className="link text-labelLarge">
+                <Link to="/reset-link" className="link text-labelLarge inline-block">
                   Forgot password ?
                 </Link>
               </div>
@@ -78,12 +78,12 @@ const Login = () => {
               </Button>
 
               <p className='text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4'>
-                Already have an account?
+                Dont&apos;t have an account?
                 <Link
-                  to="/login"
-                  className='link inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
+                  to="/register"
+                  className='link text-labelLarge inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
                 >
-                  Sign in
+                  Create an account
                 </Link>
               </p>
             </Form>
