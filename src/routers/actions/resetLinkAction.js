@@ -7,7 +7,7 @@ const resetLinkAction = async ({ request }) => {
   const email = formData.get('email')
 
   try {
-    await account.createRecovery(email, `${location.origin}/reset-password}`)
+    await account.createRecovery(email, `${location.origin}/reset-password`)
     return {
       ok: true,
       message: "You will receive a password reset link shortly. Please check your email and follow the instructions to reset your password."
