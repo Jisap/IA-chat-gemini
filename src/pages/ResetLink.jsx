@@ -66,7 +66,7 @@ const ResetLink = () => {
                 {navigation.state === "submitting" ? (
                   <CircularProgress size="small" />
                 ) : (
-                  "Sign in"
+                  "Get link"
                 )}
               </Button>
             </Form>

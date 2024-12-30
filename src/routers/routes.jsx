@@ -7,6 +7,7 @@ import loginAction from "./actions/loginAction";
 import registerLoader from "./loaders/registerLoader.js";
 import loginLoader from "./loaders/loginLoader.js";
 import ResetLink from "../pages/ResetLink.jsx";
+import resetLinkAction from "./actions/resetLinkAction.js";
 
 
 const router = createBrowserRouter([
@@ -29,8 +30,8 @@ const router = createBrowserRouter([
   {
     path: "/reset-link",
     element: <ResetLink />, 
-    
-  }
+    action: resetLinkAction
+  },
 ]);
 
 export default router;
