@@ -62,12 +62,14 @@
     @apply border-[3px] w-5 h-5;
   }
 
+  /* El contenedor .linear-progress actúa como el fondo y estructura principal de la barra de progreso. */
   .linear-progress {
-    @apply h-1 bg-light-secondaryContainer dark:bg-dark-secondaryContainer rounded-full mx-1 overflow-hidden origin-top;
+    @apply h-1 bg-light-secondaryContainer dark:bg-dark-secondaryContainer rounded-full mx-1 overflow-hidden origin-top; /* Establece el punto de transformación en la parte superior del elemento. */
   }
 
+  /* Esta clase define el indicador activo, que representa el progreso dentro del contenedor: */
   .linear-progress .active-indicator {
-    @apply h-[inherit] bg-light-primary dark:bg-dark-primary rounded-full origin-right -translate-x-full
+    @apply h-[inherit] bg-light-primary dark:bg-dark-primary rounded-full origin-right -translate-x-full /* Desplaza el indicador completamente hacia la izquierda (fuera de la vista) como posición inicial. Esto se puede animar para mostrar el progreso. */
   }
 
   .snackbar {
@@ -90,6 +92,84 @@
   .snackbar.error {
     @apply bg-light-errorContainer
     text-light-onErrorContainer
+  }
+
+  .icon-btn {
+    --state-layer-bg: theme('colors.light.onSurface') /* Se declara una nueva variable disponible en el contexto de los elementos con la clase .icon-btn */
+    @apply text-light-onSurfaceVariant
+    dark:text-dark-onSurfaceVariant
+    grid place-items-center rounded-full h-10 w-10
+  }
+
+  @media (prefers-color-scheme: dark) {                             /* Detecta si el usuario ha configurado su sistema operativo o navegador en modo oscuro */
+    .icon-btn {                                                     /* Si es asi se aplica los estilos de .icon-btn */ 
+      --state-layer-bg: theme('colors.dark.onSurface')            /* Cambia dinámicamente el valor de la variable --state-layer-bg a un color oscuro.  */
+    }
+  }
+
+  .icon-btn:disabled {
+    @apply text-light-onSurfaceVariant/[0.38]
+    dark:text-dark-onSurfaceVariant/[0.38]
+    cursor-not-allowed
+  }
+
+  .icon-btn.small {
+    @apply w-7 h-7 min-w-7 min-h-7
+  }
+
+  .icon-btn.large {
+    @apply w-12 h-12 min-w-12 min-h-12
+  }
+
+  .icon-btn.small .icon {
+    @apply text-[18px]
+  }
+
+  .avatar {
+    @apply aspect-square
+    bg-light-surfaceContainerHighest
+    dark:bg-dark-surfaceContainerHighest
+    min-w-[32px]
+    max-w-[32px]
+    overflow-hidden
+    rounded-full
+  }
+
+  .menu-wrapper{
+    @apply relative
+  }
+
+  .menu {
+    @apply bg-light-surfaceContainer
+    dark:bg-dark-surfaceContainer
+    absolute top-[calc(100%+4px)] right-0 min-w-[112px] max-w-[280px]
+    py-2
+    rounded-extraSmall
+    shadow-elevation2
+    z-20
+    origin-top-right
+    scale-75 opacity-0 invisible 
+    transition-[transform,opacity,visibility]
+    duration-short4
+    ease-standard
+  }
+
+  .menu.active{
+    @apply scale-100 opacity-100 visible
+  }
+
+  .menu-item {
+    --state-layer-bg: theme("colors.light.onSurface") /* Se declara una nueva variable disponible en el contexto de los elementos con la clase .menu-item */
+    @apply text-light-onSurface
+    dark:text-dark-onSurface
+    text-labelLarge
+    h-12 w-full flex items-center px-3
+  }
+
+  @media (prefers-color-scheme: dark) {                             /* Detecta si el usuario ha configurado su sistema operativo o navegador en modo oscuro */
+    .menu-item {                                                    /* Si es asi se aplica los estilos de .menu-item */
+      --state-layer-bg: theme("colors.dark.onSurface")            /* Cambia dinámicamente el valor de la variable --state-layer-bg a un color oscuro. */
+    }
   }
 
   .text-field-wrapper {
@@ -215,4 +295,15 @@
   .img-cover {
     @apply w-full h-full object-cover;
   }
+
+  .material-symbols-rounded {
+    font-variation-settings: 
+      'FILL' 0, 
+      'wght' 400, 
+      'GRAD' 0, 
+      'opsz' 24;
+    @apply w-[1em] min-w-[1em] h-[1em] min-h-[1em] overflow-hidden
+  }
+
+  
 }
