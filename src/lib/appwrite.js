@@ -1,4 +1,4 @@
-import { Client, Account } from 'appwrite';
+import { Client, Account, Avatars } from 'appwrite';
 
 const appWriteProjectId = import.meta.env.VITE_APPWRITE_PROJECT_ID;
 const appWriteProjectEndpoint = import.meta.env.VITE_APPWRITE_API_ENDPOINT;
@@ -10,4 +10,7 @@ client.setProject(appWriteProjectId)
 
 const account = new Account(client);
 
-export  { account }
+
+const avatars = new Avatars(client);
+
+export  { account, avatars }
