@@ -1,6 +1,6 @@
 import React from 'react'
 import PageTitle from './components/PageTitle'
-
+import TopAppBar from './components/TopAppBar'
 
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
       {/* Sidebar */}
       <div>
         {/* Top app bar */}
+        <TopAppBar />
         
         {/* Main content */}
         <div>
@@ -24,7 +25,8 @@ const App = () => {
           <p>
             Phoenix may display inaccurate info, including about people, so double-check its responses.
             <a 
-              href=""
+              href="https://support.google.com/gemini?P=privacy_notice"
+              target="_blank"
               className=''  
             >
               Your privacy & Gemini Apps
