@@ -1,8 +1,38 @@
 import React from 'react'
+import PageTitle from './components/PageTitle'
+
+
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <PageTitle title="Phoenix - chat to supercharge your ideas"/>
+
+      {/* Sidebar */}
+      <div>
+        {/* Top app bar */}
+        
+        {/* Main content */}
+        <div>
+          <div>
+
+          </div>
+        </div>
+
+        {/* Prompt field */}
+        <div>
+          <p>
+            Phoenix may display inaccurate info, including about people, so double-check its responses.
+            <a 
+              href=""
+              className=''  
+            >
+              Your privacy & Gemini Apps
+            </a>
+          </p>
+        </div>
+      </div>
+    </>
   )
 }
 
