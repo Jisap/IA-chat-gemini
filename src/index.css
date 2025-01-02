@@ -142,8 +142,11 @@
   .menu {
     @apply bg-light-surfaceContainer
     dark:bg-dark-surfaceContainer
-    absolute top-[calc(100%+4px)] right-0 min-w-[112px] max-w-[280px]
-    py-2
+    absolute top-[calc(100%+4px)] 
+    right-0 
+    min-w-[112px] 
+    max-w-[280px]
+    py-6
     rounded-extraSmall
     shadow-elevation2
     z-20
@@ -155,7 +158,7 @@
   }
 
   .menu.active{
-    @apply scale-100 opacity-100 visible
+    @apply scale-100 opacity-100 visible /* Se aumenta la escala y la opacidad del elemento para mostrarlo. */
   }
 
   .menu-item {

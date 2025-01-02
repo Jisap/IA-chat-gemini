@@ -8,7 +8,7 @@ const MenuItem = ({ classes = "", labelText, ...rest }) => {
       className={`menu-item ${classes}`}
       {...rest}
     >
-      <span>{labelText}</span>
+      <span className='p-7'>{labelText}</span>
 
       <div className='state-layer'></div>
     </button>

@@ -3,18 +3,22 @@
 
 import React from 'react'
 import { IconBtn } from './Button'
-import { Link, useNavigation } from 'react-router-dom'
+import { Link, useNavigation, useNavigate } from 'react-router-dom'
 import { logoLight, logoDark } from '../assets/assets'
 import Avatar from './Avatar'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
 import { LinearProgress } from './Progress'
 import { AnimatePresence } from 'framer-motion'
+import { useToggle } from '../hooks/useToggle'
+import logout from '../utils/logout'
 
 
 const TopAppBar = () => {
 
+  const [showMenu, setShowMenu] = useToggle();
   const navigation = useNavigation();
+  const navigate = useNavigate();
   const isNormalLoad = navigation.state === "loading" && !navigation.formData // Checkeamos que el estado sea loading y que no haya datos en el formulario
 
   return (
@@ -49,12 +53,12 @@ const TopAppBar = () => {
       </div>
 
       <div className='menu-wrapper'>
-        <IconBtn>
+        <IconBtn onClick={setShowMenu}>
           <Avatar name="John Doe" />
         </IconBtn>
 
-        <Menu classes="">
-          <MenuItem labelText="Log out" />
+        <Menu classes={showMenu ? 'active' : ''}>
+          <MenuItem labelText="Log out" onClick={() => logout(navigate)}/>
         </Menu>
       </div>
 
