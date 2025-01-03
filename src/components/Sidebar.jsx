@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom"
 const Sidebar = () => {
   return (
     <>
-      <div className="sidebar">
+      <div className="sidebar active">
         <div className="sidebar-inner">
           <div>
             <Logo />
