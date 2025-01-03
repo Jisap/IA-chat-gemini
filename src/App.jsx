@@ -1,6 +1,7 @@
 import React from 'react'
 import PageTitle from './components/PageTitle'
 import TopAppBar from './components/TopAppBar'
+import Sidebar from './components/Sidebar'
 
 
 const App = () => {
@@ -9,6 +10,8 @@ const App = () => {
       <PageTitle title="Phoenix - chat to supercharge your ideas"/>
 
       {/* Sidebar */}
+      <Sidebar />
+
       <div>
         {/* Top app bar */}
         <TopAppBar />

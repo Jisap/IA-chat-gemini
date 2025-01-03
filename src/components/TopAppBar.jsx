@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { IconBtn } from './Button'
-import { Link, useNavigation, useNavigate, useLoaderData } from 'react-router-dom'
-import { logoLight, logoDark } from '../assets/assets'
+import { useNavigation, useNavigate, useLoaderData } from 'react-router-dom'
 import Avatar from './Avatar'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
@@ -11,6 +10,7 @@ import { LinearProgress } from './Progress'
 import { AnimatePresence } from 'framer-motion'
 import { useToggle } from '../hooks/useToggle'
 import logout from '../utils/logout'
+import Logo from './Logo'
 
 
 const TopAppBar = () => {
@@ -30,26 +30,7 @@ const TopAppBar = () => {
           classes='lg:hidden'
         />
 
-        <Link 
-          to="/"
-          className='min-w-max max-w-max h-[24px] lg:hidden'
-        >
-          <img 
-            src={logoLight}
-            alt="phoenix logo"
-            width={133}
-            height={24}
-            className='dark:hidden'
-          />
-
-          <img
-            src={logoDark}
-            alt="phoenix logo"
-            width={133}
-            height={24}
-            className='hidden dark:block'
-          />
-        </Link>
+        <Logo classes="lg:hidden" />
       </div>
 
       <div className='menu-wrapper'>
