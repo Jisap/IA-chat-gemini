@@ -1,5 +1,6 @@
-import { Account } from "appwrite";
+
 import { redirect } from "react-router-dom";
+import { account } from "../../lib/appwrite";
 
 
 const appLoader = async (ctx) => {
@@ -7,7 +8,7 @@ const appLoader = async (ctx) => {
   const data = {}
   
   try {
-    data.user = await Account.get()
+    data.user = await account.get()
     
   } catch (error) { 
     console.log(`Error getting user session: ${error.message}`)

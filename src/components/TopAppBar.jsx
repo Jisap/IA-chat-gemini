@@ -1,9 +1,8 @@
 
 
-
 import React from 'react'
 import { IconBtn } from './Button'
-import { Link, useNavigation, useNavigate } from 'react-router-dom'
+import { Link, useNavigation, useNavigate, useLoaderData } from 'react-router-dom'
 import { logoLight, logoDark } from '../assets/assets'
 import Avatar from './Avatar'
 import Menu from './Menu'
@@ -16,6 +15,8 @@ import logout from '../utils/logout'
 
 const TopAppBar = () => {
 
+  const { user } = useLoaderData();
+  console.log(user);
   const [showMenu, setShowMenu] = useToggle();
   const navigation = useNavigation();
   const navigate = useNavigate();
