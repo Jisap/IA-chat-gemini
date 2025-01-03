@@ -16,7 +16,6 @@ import logout from '../utils/logout'
 const TopAppBar = () => {
 
   const { user } = useLoaderData();
-  console.log(user);
   const [showMenu, setShowMenu] = useToggle();
   const navigation = useNavigation();
   const navigate = useNavigate();
@@ -55,7 +54,7 @@ const TopAppBar = () => {
 
       <div className='menu-wrapper'>
         <IconBtn onClick={setShowMenu}>
-          <Avatar name="John Doe" />
+          <Avatar name={user.name} />
         </IconBtn>
 
         <Menu classes={showMenu ? 'active' : ''}>
