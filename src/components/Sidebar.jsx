@@ -10,7 +10,7 @@ const Sidebar = () => {
     <>
       <div className="sidebar active">
         <div className="sidebar-inner">
-          <div>
+          <div className="h-16 grid items-center px-4 mb-4">
             <Logo />
           </div>
 
@@ -20,12 +20,15 @@ const Sidebar = () => {
             classes=""
           />
 
-          <div className="">
-            <p>Recent</p>
+          <div className="overflow-y-auto -me-2 pe-1">
+            <p className="text-titleSmall h-9 grid items-center px-4">
+              Recent
+            </p>
+         
             <nav>
-              <div>
+              <div className="relative group">
                 <NavLink 
-                  to=""
+                  to="new-chat"
                   className="nav-link"
                   title=""
                 >
@@ -45,7 +48,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className={`overlay`}></div>
+      <div className={`overlay active`}></div>
     </>
   )
 }
