@@ -5,10 +5,10 @@ import { NavLink } from "react-router-dom"
 
 
 
-const Sidebar = () => {
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   return (
     <>
-      <div className="sidebar">
+      <div className={`sidebar ${isSidebarOpen ? 'active' : ''}`}>
         <div className="sidebar-inner">
           <div className="h-16 grid items-center px-4 mb-4">
             <Logo />
@@ -18,6 +18,7 @@ const Sidebar = () => {
             href="/"
             text="New chat"
             classes=""
+            onClick={toggleSidebar}
           />
 
           <div className="overflow-y-auto -me-2 pe-1">
@@ -31,6 +32,7 @@ const Sidebar = () => {
                   to=""
                   className="nav-link"
                   title=""
+                  onClick={toggleSidebar}
                 >
                   <span className="material-symbols-rounded icon-small">chat_bubble</span>
                   <span className="truncate">New conversation</span>
@@ -55,9 +57,14 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className={`overlay`}></div>
+      <div className={`overlay ${isSidebarOpen ? 'active' : ''}`} onClick={toggleSidebar}></div>
     </>
   )
+}
+
+Sidebar.propTypes = {
+  isSidebarOpen: PropTypes.bool,
+  toggleSidebar: PropTypes.func,
 }
 
 export default Sidebar

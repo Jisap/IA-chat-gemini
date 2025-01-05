@@ -11,9 +11,11 @@ import { AnimatePresence } from 'framer-motion'
 import { useToggle } from '../hooks/useToggle'
 import logout from '../utils/logout'
 import Logo from './Logo'
+import PropTypes from 'prop-types'
 
 
-const TopAppBar = () => {
+
+const TopAppBar = ({ toggleSidebar }) => {
 
   const { user } = useLoaderData();
   const [showMenu, setShowMenu] = useToggle();
@@ -28,6 +30,7 @@ const TopAppBar = () => {
           icon="menu"
           title="Menu"
           classes='lg:hidden'
+          onClick={toggleSidebar}
         />
 
         <Logo classes="lg:hidden" />
@@ -48,6 +51,10 @@ const TopAppBar = () => {
       </AnimatePresence>
     </header>
   )
+}
+
+TopAppBar.propTypes = {
+  toggleSidebar: PropTypes.func,
 }
 
 export default TopAppBar
