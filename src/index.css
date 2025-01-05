@@ -416,6 +416,10 @@
       --state-layer-bg: theme('colors.dark.onSecondaryContainer');  /* Cambia dinámicamente el valor de la variable --state-layer-bg a un color oscuro. */
     }
   }
+
+  .icon-small {
+    @apply text-[18px]
+  }
 }
 
 @layer utilities {
