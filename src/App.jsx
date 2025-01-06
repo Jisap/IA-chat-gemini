@@ -11,37 +11,39 @@ const App = () => {
 
   return (
     <>
-      <PageTitle title="Phoenix - chat to supercharge your ideas"/>
+      <PageTitle title="Phoenix - chat to supercharge your ideas" />
 
-      {/* Sidebar */}
-      <Sidebar 
-        isSidebarOpen={isSidebarOpen} 
-        toggleSidebar={toggleSidebar} 
-      />
+      <div className='lg:grid lg:grid-cols-[320px,1fr]'>
+        {/* Sidebar */}
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+        />
 
-      <div>
-        {/* Top app bar */}
-        <TopAppBar toggleSidebar={toggleSidebar} />
-        
-        {/* Main content */}
-        <div>
-          <div>
+        <div className='h-dvh grid grid-rows-[max-content,minmax(0,1fr),max-content]'>
+          {/* Top app bar */}
+          <TopAppBar toggleSidebar={toggleSidebar} />
 
+          {/* Main content */}
+          <div className='px-5 pb-5 flex flex-col overflow-y-auto'>
+            <div className='max-w-[840px] w-full mx-auto grow'>
+              Main content
+            </div>
           </div>
-        </div>
 
-        {/* Prompt field */}
-        <div>
-          <p>
-            Phoenix may display inaccurate info, including about people, so double-check its responses.
-            <a 
-              href="https://support.google.com/gemini?P=privacy_notice"
-              target="_blank"
-              className=''  
-            >
-              Your privacy & Gemini Apps
-            </a>
-          </p>
+          {/* Prompt field */}
+          <div>
+            <p>
+              Phoenix may display inaccurate info, including about people, so double-check its responses.
+              <a
+                href="https://support.google.com/gemini?P=privacy_notice"
+                target="_blank"
+                className=''
+              >
+                Your privacy & Gemini Apps
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </>
