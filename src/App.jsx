@@ -3,6 +3,7 @@ import PageTitle from './components/PageTitle'
 import TopAppBar from './components/TopAppBar'
 import Sidebar from './components/Sidebar'
 import { useToggle } from './hooks/useToggle'
+import Greetings from './pages/Greetings'
 
 
 const App = () => {
@@ -27,7 +28,7 @@ const App = () => {
           {/* Main content */}
           <div className='px-5 pb-5 flex flex-col overflow-y-auto'>
             <div className='max-w-[840px] w-full mx-auto grow'>
-              Main content
+              <Greetings />
             </div>
           </div>
 
