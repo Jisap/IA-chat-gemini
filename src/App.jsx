@@ -4,6 +4,7 @@ import TopAppBar from './components/TopAppBar'
 import Sidebar from './components/Sidebar'
 import { useToggle } from './hooks/useToggle'
 import Greetings from './pages/Greetings'
+import { motion } from 'framer-motion'
 
 
 const App = () => {
@@ -33,17 +34,24 @@ const App = () => {
           </div>
 
           {/* Prompt field */}
-          <div>
-            <p>
-              Phoenix may display inaccurate info, including about people, so double-check its responses.
-              <a
-                href="https://support.google.com/gemini?P=privacy_notice"
-                target="_blank"
-                className=''
+          <div className='bg-light-background dark:bg-dark-background'>
+            <div className='max-w-[870px] px-5 w-full mx-auto'>
+              <motion.p
+                initial={{ opacity: 0, translateY: "-4px" }}
+                animate={{ opacity: 1, translateY: "0px" }}
+                transition={{ duration: 0.2, delay: 0.8, ease: "easeOut"}}
+                className='text-bodySmall text-center text-light-onsurfaceVariant dark:text-dark-onSurfaceVariant p-3' 
               >
-                Your privacy & Gemini Apps
-              </a>
-            </p>
+                Phoenix may display inaccurate info, including about people, so double-check its responses.
+                <a
+                  href="https://support.google.com/gemini?P=privacy_notice"
+                  target="_blank"
+                  className='inline underline ms-1'
+                >
+                  Your privacy & Gemini Apps
+                </a>
+              </motion.p>
+            </div>
           </div>
         </div>
       </div>
