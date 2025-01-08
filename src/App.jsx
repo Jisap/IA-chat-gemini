@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar'
 import { useToggle } from './hooks/useToggle'
 import Greetings from './pages/Greetings'
 import { motion } from 'framer-motion'
+import PromptField from './components/promptField'
 
 
 const App = () => {
@@ -36,6 +37,9 @@ const App = () => {
           {/* Prompt field */}
           <div className='bg-light-background dark:bg-dark-background'>
             <div className='max-w-[870px] px-5 w-full mx-auto'>
+
+              <PromptField />
+
               <motion.p
                 initial={{ opacity: 0, translateY: "-4px" }}
                 animate={{ opacity: 1, translateY: "0px" }}
