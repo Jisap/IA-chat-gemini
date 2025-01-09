@@ -41,7 +41,10 @@ const PromptField = () => {
     moveCursorToEnd()
   },[handleInputChange, moveCursorToEnd]);
 
-  
+  const handleSubmit = useCallback(() => {
+    inputField.current.innerHTML = ""
+    handleInputChange()
+  },[])
 
   const promptFieldVariant = {
     hidden: { scaleX: 0 },
@@ -88,6 +91,7 @@ const PromptField = () => {
         size="large"
         className="ms-auto mb-1.5"
         variants={promptFieldChildrenVariant}
+        onClick={handleSubmit}
       />
       <div className="state-layer"></div>
     </motion.div>
