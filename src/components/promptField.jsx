@@ -1,16 +1,20 @@
 import { motion } from "framer-motion"
 import { IconBtn } from "./Button"
 import { useRef, useCallback, useState } from "react"
-
+import { useNavigation, useSubmit } from "react-router-dom"
 
 
 const PromptField = () => {
 
   const inputField = useRef();
+  const navigation= useNavigation()
   const inputFieldContainer = useRef();
   const [placeholderShown, setPlaceholderShown] = useState(true);
   const [isMultiline, setIsMultiline] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  const submit = useSubmit(); // hook para enviar peticiones
+
 
   const handleInputChange = useCallback(() => {
     if(inputField.current.innerText === "\n"){                     // Si se pulsa enter
@@ -19,7 +23,7 @@ const PromptField = () => {
     
     setPlaceholderShown(!inputField.current.innerText)             // Si el inputField no tiene contenido, placeholderShown=true -> placeholder hidden
     setIsMultiline(inputFieldContainer.current.clientHeight > 64)  // Si el inputFieldContainer tiene más de 64 px de alto, es multilinea -> multiline=true -> rounded-large
-    setInputValue(inputField.current.innerText.trim())
+    setInputValue(inputField.current.innerText.trim())             // Establece el valor del inputField
   },[]);
 
   const moveCursorToEnd = useCallback(() => {
@@ -42,9 +46,28 @@ const PromptField = () => {
   },[handleInputChange, moveCursorToEnd]);
 
   const handleSubmit = useCallback(() => {
+    if(!inputValue || navigation.state === "submitting") return;  // Si el inputField está vacío o si se está enviando una petición, no se envía nada
+    
+    submit(                                                       // Envía la petición con el valor del inputField a "/" donde la appAction se encarga de procesarla
+      {
+        user_prompt: inputValue,                                  // La clave "user_prompt" almacena el valor del inputField
+        request_type: "user_prompt",
+      },
+      {
+        method: "POST",
+        encType: "application/x-www-form-urlencoded",
+        action: "/"
+      }
+    )
+
     inputField.current.innerHTML = ""
     handleInputChange()
-  },[])
+  },[
+    handleInputChange, 
+    inputValue, 
+    navigation.state, 
+    submit
+  ])
 
   const promptFieldVariant = {
     hidden: { scaleX: 0 },
@@ -84,6 +107,12 @@ const PromptField = () => {
         ref={inputField}
         onInput={handleInputChange}
         onPaste={handlePaste}
+        onKeyDown={(e) => {
+          if(e.key === "Enter" && !e.shiftKey){
+            e.preventDefault()
+            handleSubmit()
+          }
+        }}
       />
       <IconBtn 
         icon="send"

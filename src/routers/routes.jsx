@@ -18,6 +18,7 @@ import resetPasswordAction from "./actions/resetPasswordAction.js";
 import resetLinkLoader from "./loaders/resetLinkLoader.js";
 import resetPasswordLoader from "./loaders/resetPasswordLoader.js";
 import appLoader from "./loaders/appLoader.js";
+import appAction from "./actions/appAction.jsx";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     loader: appLoader,
+    action: appAction,
   },
   {
     path: "/register",
