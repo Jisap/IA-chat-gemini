@@ -25,12 +25,12 @@ const appLoader = async (ctx) => {
         Query.equal("user_id", data.user.$id),
       ]
     )
-    console.log(data);
   } catch (error) {
     console.log(`Error getting conversations: ${error.message}`);
   }
-
-  return data
+  
+  console.log(data);
+  return data; // Esta data será descargada en app con userLoaderData()
 }
 
 export default appLoader;

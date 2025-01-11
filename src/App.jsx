@@ -6,6 +6,7 @@ import { useToggle } from './hooks/useToggle'
 import Greetings from './pages/Greetings'
 import { motion } from 'framer-motion'
 import PromptField from './components/promptField'
+import { useLoaderData } from 'react-router-dom'
 
 
 const App = () => {

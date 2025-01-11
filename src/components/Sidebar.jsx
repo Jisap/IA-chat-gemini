@@ -1,11 +1,19 @@
 import PropTypes from "prop-types"
 import Logo from "./Logo"
 import { ExtendedFab, IconBtn } from './Button'
-import { NavLink } from "react-router-dom"
+import { NavLink, useLoaderData } from "react-router-dom"
 import { motion } from "framer-motion"
 
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+
+  //const { conversations } = useLoaderData() || {};
+  //console.log("conversationData desde sidebar", conversations);
+
+  const { conversations} = useLoaderData() || {};
+  const { documents } = conversations;
+  console.log("documents desde sidebar", documents);
+  
   return (
     <>
       <motion.div 
@@ -32,26 +40,31 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             </p>
          
             <nav>
-              <div className="relative group">
-                <NavLink 
-                  to=""
-                  className="nav-link"
-                  title=""
-                  onClick={toggleSidebar}
+              {documents.map((item) => (
+                <div 
+                  key={item.$id}
+                  className="relative group"
                 >
-                  <span className="material-symbols-rounded icon-small">chat_bubble</span>
-                  <span className="truncate">New conversation</span>
-                  <div className="state-layer"></div>
-                </NavLink>
+                  <NavLink 
+                    to={item.$id}
+                    className="nav-link"
+                    title={item.title}
+                    onClick={toggleSidebar}
+                  >
+                    <span className="material-symbols-rounded icon-small">chat_bubble</span>
+                    <span className="truncate">{item.title}</span>
+                    <div className="state-layer"></div>
+                  </NavLink>
 
-                <IconBtn 
-                  icon="delete" 
-                  size="small" 
-                  classes="absolute top-1/2 right-1.5 -translate-y-[10px] z-10 opacity-0 group-hover:opacity-100 group:focus-within:opacity-100 hidden lg:grid" 
-                  title="Delete"   
-                />
-              </div>
-            </nav>
+                  <IconBtn 
+                    icon="delete" 
+                    size="small" 
+                    classes="absolute top-1/2 right-1.5 -translate-y-[10px] z-10 opacity-0 group-hover:opacity-100 group:focus-within:opacity-100 hidden lg:grid" 
+                    title="Delete"   
+                  />
+                </div>
+              ))}
+            </nav> 
           </div>
 
           <div 
