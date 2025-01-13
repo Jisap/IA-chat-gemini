@@ -12,7 +12,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 
   const { conversations} = useLoaderData() || {};
   const { documents } = conversations;
-  console.log("documents desde sidebar", documents);
+  //console.log("documents desde sidebar", documents);
   
   return (
     <>
@@ -30,7 +30,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           <ExtendedFab 
             href="/"
             text="New chat"
-            classes=""
+            classes="mb-4"
             onClick={toggleSidebar}
           />
 

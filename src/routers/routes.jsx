@@ -19,6 +19,8 @@ import resetLinkLoader from "./loaders/resetLinkLoader.js";
 import resetPasswordLoader from "./loaders/resetPasswordLoader.js";
 import appLoader from "./loaders/appLoader.js";
 import appAction from "./actions/appAction.jsx";
+import Conversation from "../pages/Conversation.jsx";
+import conversationLoader from "./loaders/conversationLoader.js";
 
 
 const router = createBrowserRouter([
@@ -27,6 +29,13 @@ const router = createBrowserRouter([
     element: <App />,
     loader: appLoader,
     action: appAction,
+    children: [
+      {
+        path: "/:conversationId",
+        element: <Conversation />,
+        loader: conversationLoader,
+      }
+    ]
   },
   {
     path: "/register",
