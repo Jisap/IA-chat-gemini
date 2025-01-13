@@ -3,6 +3,7 @@ import React from 'react'
 import PageTitle from '../components/PageTitle'
 import { useLoaderData } from 'react-router-dom'
 import UserPrompt from '../components/UserPrompt'
+import AiResponse from '../components/AiResponse'
 
 
 const Conversation = () => {
@@ -18,7 +19,7 @@ const Conversation = () => {
         {chatsrelation.map((chatrelation) => (
           <div key={chatrelation.$id}>
             <UserPrompt text={chatrelation.user_prompt} />
-            <p>{ chatrelation.ai_response }</p>
+            <AiResponse airesponse={chatrelation.ai_response} />
           </div>
         ))}
       </motion.div>
