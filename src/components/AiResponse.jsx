@@ -5,6 +5,7 @@ import  Markdown  from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { hopscotch, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { IconBtn } from './Button'
 
 
 const AiResponse = ({airesponse, children}) => {
@@ -14,7 +15,7 @@ const AiResponse = ({airesponse, children}) => {
     return match ? (
       <>
         <div className='code-block'>
-          <div className=''>{match[0]}</div>
+          <div className='p-4 pb-0 font-sans'>{match[0]}</div>
           <SyntaxHighlighter 
             {...rest} 
             PreTag="div" 
@@ -47,7 +48,12 @@ const AiResponse = ({airesponse, children}) => {
             </a>
           </p>
 
-          
+          <IconBtn 
+            icon="content_copy"
+            size="small"
+            title="Copy code"
+            onClick={() => navigator.clipboard.writeText(children)}
+          />
         </div>
       </>
     ) : (
