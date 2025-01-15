@@ -1,31 +1,39 @@
+import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import React from 'react'
 import { iconLogo } from '../assets/assets'
-import  Markdown  from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import Markdown from 'react-markdown' // Renderiza contenido en formato Markdown.
+import remarkGfm from 'remark-gfm'    // Habilita extensiones de Markdown como tablas, listas de tareas y enlaces automáticos.
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter' // Resaltar bloques de código con temas específicos
 import { hopscotch, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { IconBtn } from './Button'
+import toTitleCase from '../utils/toTitleCase'
 
 
 const AiResponse = ({airesponse, children}) => {
   
-  const code = ({ children, className, ...rest }) => {
-    const match = className?.match(/language-(\w+)/) // Establece el match con el nombre de la clase
-    return match ? (
+  const [codeTheme, setCodeTheme] = useState('')
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)') // Obtiene la configuración del tema del navegador 
+    setCodeTheme(mediaQuery.matches ? hopscotch : coy)                   // Si el tema es oscuro, se aplica el tema hopscotch, de lo contrario, se aplica el tema coy
+  },[])
+
+  const code = ({ children, className, ...rest }) => {                   // Componente para renderizar bloques de código
+    const match = className?.match(/language-(\w+)/)                     // Detecta si el markdown contiene una clase que expecifica el lenguaje de código
+    return match ? (                                                     // Si lo tiene, renderiza el bloque de código 
       <>
         <div className='code-block'>
-          <div className='p-4 pb-0 font-sans'>{match[0]}</div>
+          <div className='p-4 pb-0 font-sans'>{toTitleCase(match[1])}</div> 
           <SyntaxHighlighter 
             {...rest} 
             PreTag="div" 
-            language={match[1]}
-            style={hopscotch}
-            customStyle={{
+            language={match[1]} // obtiene el lenguaje a partir de la clase language-<lenguaje> del Markdown.
+            style={codeTheme}   // Aplica un tema visual para el resaltado de sintaxis.
+            customStyle={{      // Estilos CSS adicionales
               marginBlock: "0",
               padding: "2px",
             }}
-            codeTagProps={{
+            codeTagProps={{     // Propiedades adicionales para el elemento <code>
               style: {
                 padding: "14px",
                 fontWeight: "600"
@@ -36,7 +44,8 @@ const AiResponse = ({airesponse, children}) => {
           </SyntaxHighlighter>
         </div>
 
-        <div>
+        <div className='bg-light-surfaceContainer dark:bg-dark-surfaceContainer rounded-t-extraSmall 
+        rounded-b-medium flex justify-between items-center h-11 font-sans text-bodyMedium ps-4 pe-2'>
           <p>
             Use code
             <a 
