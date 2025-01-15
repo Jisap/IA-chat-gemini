@@ -20,6 +20,16 @@ const AiResponse = ({airesponse, children}) => {
     const themeListener = mediaQuery.addEventListener('change', (e) => { // Cuando cambia la configuración del tema del navegador, se actualiza el tema de la aplicación
       setCodeTheme(e.matches ? hopscotch : coy)
     })
+
+    return () => mediaQuery.removeEventListener('change', themeListener)
+  },[]);
+
+  const handleCopy = useCallback(async(text) => {
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch (error) {
+      console.error(`Error al copiar el texto: ${error.message}`)
+    }
   },[])
 
   const code = ({ children, className, ...rest }) => {                   // Componente para renderizar bloques de código
@@ -65,7 +75,7 @@ const AiResponse = ({airesponse, children}) => {
             icon="content_copy"
             size="small"
             title="Copy code"
-            onClick={() => navigator.clipboard.writeText(children)}
+            onClick={handleCopy.bind(null, children)}
           />
         </div>
       </>
