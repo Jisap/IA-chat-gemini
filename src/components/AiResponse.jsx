@@ -7,11 +7,12 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter' // Resalta
 import { hopscotch, coy } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { IconBtn } from './Button'
 import toTitleCase from '../utils/toTitleCase'
-
+import { useSnackbar } from '../hooks/useSnackbar'
 
 const AiResponse = ({airesponse, children}) => {
   
   const [codeTheme, setCodeTheme] = useState('')
+  const { showSnackbar, hideSnackbar } = useSnackbar()
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)') // Obtiene la configuración del tema del navegador 
@@ -25,12 +26,18 @@ const AiResponse = ({airesponse, children}) => {
   },[]);
 
   const handleCopy = useCallback(async(text) => {
+    hideSnackbar();
     try {
-      await navigator.clipboard.writeText(text)
+      await navigator.clipboard.writeText(text);
+      showSnackbar({ 
+        message: 'Copiado al portapapeles',
+        timeOut: 2500 
+      });
     } catch (error) {
       console.error(`Error al copiar el texto: ${error.message}`)
     }
-  },[])
+  },[showSnackbar, hideSnackbar]);
+
 
   const code = ({ children, className, ...rest }) => {                   // Componente para renderizar bloques de código
     const match = className?.match(/language-(\w+)/)                     // Detecta si el markdown contiene una clase que expecifica el lenguaje de código
