@@ -34,6 +34,9 @@ const AiResponse = ({airesponse, children}) => {
         timeOut: 2500 
       });
     } catch (error) {
+      showSnackbar({ 
+        message: error.message,
+      });
       console.error(`Error al copiar el texto: ${error.message}`)
     }
   },[showSnackbar, hideSnackbar]);
