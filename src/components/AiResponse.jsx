@@ -16,6 +16,10 @@ const AiResponse = ({airesponse, children}) => {
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)') // Obtiene la configuración del tema del navegador 
     setCodeTheme(mediaQuery.matches ? hopscotch : coy)                   // Si el tema es oscuro, se aplica el tema hopscotch, de lo contrario, se aplica el tema coy
+  
+    const themeListener = mediaQuery.addEventListener('change', (e) => { // Cuando cambia la configuración del tema del navegador, se actualiza el tema de la aplicación
+      setCodeTheme(e.matches ? hopscotch : coy)
+    })
   },[])
 
   const code = ({ children, className, ...rest }) => {                   // Componente para renderizar bloques de código
