@@ -49,7 +49,7 @@ const PromptField = () => {
   const handleSubmit = useCallback(() => {
     if(!inputValue || navigation.state === "submitting") return;  // Si el inputField está vacío o si se está enviando una petición, no se envía nada
     
-    submit(                                                       // Envía la petición con el valor del inputField a "/" donde la appAction se encarga de procesarla
+    submit(                                                       // Envía la petición con el valor del inputField a "/" o a "/:conversationId"donde la appAction se encarga de procesarla
       {
         user_prompt: inputValue,                                  // La clave "user_prompt" almacena el valor del inputField
         request_type: "user_prompt",

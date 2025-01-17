@@ -44,7 +44,7 @@ const userPromptAction = async (formData) => {
     console.log(`Error creating chat: ${error.message}`);
   }
 
-  return redirect(`/${conversation.$id}`);	
+  return redirect(`/${conversation.$id}`);	// Despues de crear la conversación, redirigimos a la misma :/app/:conversationId
 }
 
 const appAction = async ({ request }) => {
