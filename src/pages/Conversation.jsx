@@ -9,7 +9,7 @@ import AiResponse from '../components/AiResponse'
 const Conversation = () => {
 
   const { conversation: { title, chatsrelation } } = useLoaderData() || {};
-  console.log("chatsrelation desde conversation", chatsrelation);
+  //console.log("chatsrelation desde conversation", chatsrelation);
 
   return (
     <>

@@ -18,10 +18,25 @@ const getConversationTitle = async( userPrompt ) => {
 }
 
 const getAiResponse = async (userPrompt, chats = []) => {
+
+  const history = []
+  chats.forEach(({ user_prompt, ai_response }) => { // Si se pasa un historial de chats, se agrega a la conversación
+    history.push(
+      { 
+        role: "user", 
+        parts: [{ text: user_prompt }]
+      },
+      {
+        role: "model",
+        parts: [{ text: ai_response }]
+      }
+    )
+  });
+
   try {
 
     model.generationConfig = { temperature: 1.5 };          // Ajusta la temperatura del generador
-    const chat = model.startChat({ history: chats });       // Inicia una conversación
+    const chat = model.startChat({ history });              // Inicia una conversación
     const result = await chat.sendMessage(userPrompt);      // Envía el mensaje al generador
     return result.response.text();                          // Devuelve el resultado del generador
 

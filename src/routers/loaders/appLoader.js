@@ -29,7 +29,7 @@ const appLoader = async (ctx) => {
     console.log(`Error getting conversations: ${error.message}`);
   }
   
-  console.log(data);
+  //console.log(data);
   return data; // Esta data será descargada en app con userLoaderData()
 }
 

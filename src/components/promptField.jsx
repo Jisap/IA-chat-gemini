@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { IconBtn } from "./Button"
 import { useRef, useCallback, useState } from "react"
-import { useNavigation, useSubmit } from "react-router-dom"
+import { useNavigation, useSubmit, useParams } from "react-router-dom"
 
 
 const PromptField = () => {
@@ -15,6 +15,7 @@ const PromptField = () => {
 
   const submit = useSubmit(); // hook para enviar peticiones
 
+  const { conversationId } = useParams();
 
   const handleInputChange = useCallback(() => {
     if(inputField.current.innerText === "\n"){                     // Si se pulsa enter
@@ -56,7 +57,7 @@ const PromptField = () => {
       {
         method: "POST",
         encType: "application/x-www-form-urlencoded",
-        action: "/"
+        action: `/${conversationId || ""}`
       }
     )
 
@@ -66,7 +67,8 @@ const PromptField = () => {
     handleInputChange, 
     inputValue, 
     navigation.state, 
-    submit
+    submit,
+    conversationId
   ])
 
   const promptFieldVariant = {

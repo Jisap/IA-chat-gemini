@@ -21,6 +21,7 @@ import appLoader from "./loaders/appLoader.js";
 import appAction from "./actions/appAction.jsx";
 import Conversation from "../pages/Conversation.jsx";
 import conversationLoader from "./loaders/conversationLoader.js";
+import conversationAction from "./actions/conversationAction.jsx";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
         path: "/:conversationId",
         element: <Conversation />,
         loader: conversationLoader,
+        action: conversationAction,
       }
     ]
   },
