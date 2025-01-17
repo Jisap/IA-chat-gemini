@@ -33,7 +33,23 @@ const conversationAction = async({ request, params }) => {
   } catch (error) {
     console.log(`Error getting Gemini response: ${error.message}`);
   }
-console.log("aiResponse:", aiResponse);
+
+  try {
+    await databases.createDocument(                                          // Creamos el chat en la base de datos
+      import.meta.env.VITE_APPWRITE_DATABASE_ID,
+      "chats",
+      generateID(),
+      {
+        user_prompt: userPrompt,
+        ai_response: aiResponse,
+        conversationsrelation: conversationId
+      }
+    )
+  } catch (error) {
+    console.log(`Error storing chat: ${error.message}`);
+  }
+
+
   return null
 }
 
