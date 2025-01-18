@@ -15,7 +15,12 @@ const Conversation = () => {
     <>
       <PageTitle title={`${title} | Phoenix`} />
 
-      <motion.div>
+      <motion.div 
+        className='max-w-[700px] mx-auto !will-change-auto'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2, delay: 0.05, ease: 'easeOut' }}
+      >
         {chatsrelation.map((chatrelation) => (
           <div key={chatrelation.$id}>
             <UserPrompt text={chatrelation.user_prompt} />
