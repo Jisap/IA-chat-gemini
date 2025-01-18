@@ -109,10 +109,8 @@ const AiResponse = ({airesponse, children}) => {
 
       <div className='markdown-content'>
         <Markdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            code
-          }}
+          remarkPlugins={[remarkGfm]}  // Habilita extensiones de Markdown como tablas, listas de tareas y enlaces automáticos.
+          components={{ code }}        // Código de Markdown personalizado
         >
           {airesponse}
         </Markdown>

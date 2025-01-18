@@ -58,7 +58,7 @@ const PromptField = () => {
         method: "POST",
         encType: "application/x-www-form-urlencoded",
         action: `/${conversationId || ""}`
-      }
+      }// Aqui se crea el navigation.formData
     )
 
     inputField.current.innerHTML = ""

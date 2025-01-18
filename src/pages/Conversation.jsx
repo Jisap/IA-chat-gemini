@@ -4,12 +4,17 @@ import PageTitle from '../components/PageTitle'
 import { useLoaderData } from 'react-router-dom'
 import UserPrompt from '../components/UserPrompt'
 import AiResponse from '../components/AiResponse'
+import PromptPreloader from '../components/PromptPreloader'
+import usePromptPreloader from '../hooks/usePromptPreloader'
+
 
 
 const Conversation = () => {
 
   const { conversation: { title, chatsrelation } } = useLoaderData() || {};
   //console.log("chatsrelation desde conversation", chatsrelation);
+
+  const { promptPreloaderValue } = usePromptPreloader(); // Obtiene el valor del prompt del user 
 
   return (
     <>
@@ -28,6 +33,13 @@ const Conversation = () => {
           </div>
         ))}
       </motion.div>
+
+      {/* submit ->:/conversationId -> usePromptPreloader detecta si hay data en navigation -> extrae el valor del user_prompt -> renderiza el componente PromptPreloader */}
+      {/* Cuando termina la navegación, el componente PromptPreloader desaparece  y se renderiza resto del componente de <Conversation /> */}
+      {promptPreloaderValue && (
+        <PromptPreloader promptValue={ promptPreloaderValue } /> 
+      )}
+
     </>
   )
 }
