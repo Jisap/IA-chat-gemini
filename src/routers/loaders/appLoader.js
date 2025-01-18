@@ -30,7 +30,7 @@ const appLoader = async (ctx) => {
   }
   
   //console.log(data);
-  return data; // Esta data será descargada en app/:conversationId con userLoaderData()
+  return data; // Esta data será descargada en app/:conversationId con useLoaderData()
 }
 
 export default appLoader;

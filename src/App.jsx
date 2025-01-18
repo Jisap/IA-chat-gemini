@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PageTitle from './components/PageTitle'
 import TopAppBar from './components/TopAppBar'
 import Sidebar from './components/Sidebar'
@@ -6,15 +6,26 @@ import { useToggle } from './hooks/useToggle'
 import Greetings from './pages/Greetings'
 import { motion } from 'framer-motion'
 import PromptField from './components/promptField'
-import { Outlet, useParams, useNavigation } from 'react-router-dom'
+import { Outlet, useParams, useNavigation, useActionData } from 'react-router-dom'
+import { useSnackbar } from './hooks/useSnackbar'
 
 
 const App = () => {
 
   const params = useParams();
   const navigation = useNavigation();
-
+  const actionData = useActionData(); // Returns the action data from the most recent POST navigation form submission
+console.log("actionData", actionData);
   const [isSidebarOpen, toggleSidebar] = useToggle();
+  const { showSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    if(actionData?.conversationTitle){
+      showSnackbar({
+        message: `Deleted: ${actionData.conversationTitle} conversation`,
+      })
+    }
+  })
 
   const isNormalLoad = navigation.state === "loading" && !navigation.formData; // isNormalLoad es true cuando la página se carga y no hay formularios en la URL
 
