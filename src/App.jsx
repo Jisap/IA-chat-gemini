@@ -6,14 +6,17 @@ import { useToggle } from './hooks/useToggle'
 import Greetings from './pages/Greetings'
 import { motion } from 'framer-motion'
 import PromptField from './components/promptField'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet, useParams, useNavigation } from 'react-router-dom'
 
 
 const App = () => {
 
   const params = useParams();
+  const navigation = useNavigation();
 
   const [isSidebarOpen, toggleSidebar] = useToggle();
+
+  const isNormalLoad = navigation.state === "loading" && !navigation.formData; // isNormalLoad es true cuando la página se carga y no hay formularios en la URL
 
   return (
     <>
@@ -33,7 +36,7 @@ const App = () => {
           {/* Main content */}
           <div className='px-5 pb-5 flex flex-col overflow-y-auto'>
             <div className='max-w-[840px] w-full mx-auto grow'>
-              {params.conversationId ? ( // Si la página "/" tiene un parámetro conversationId, mostramos el elemento asociado a la ruta "/:conversationId". outlet renderiza el componente de la ruta hija de app.js
+              {isNormalLoad ? null : params.conversationId ? ( // Si la página "/" tiene un parámetro conversationId, mostramos el elemento asociado a la ruta "/:conversationId". outlet renderiza el componente de la ruta hija de app.js
                 <Outlet />
               ) : (
                 <Greetings />
