@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLoaderData } from "react-router-dom";
-import { usePromptPreloader } from "../hooks/usePromptPreloader";
+import  usePromptPreloader  from "../hooks/usePromptPreloader";
 import PromptPreloader from "../components/PromptPreloader";
 
 
