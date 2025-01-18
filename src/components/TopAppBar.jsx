@@ -2,7 +2,13 @@
 
 import React from 'react'
 import { IconBtn } from './Button'
-import { useNavigation, useNavigate, useLoaderData } from 'react-router-dom'
+import { 
+  useNavigation, 
+  useNavigate, 
+  useLoaderData, 
+  useParams,
+  useSubmit, 
+} from 'react-router-dom'
 import Avatar from './Avatar'
 import Menu from './Menu'
 import MenuItem from './MenuItem'
@@ -12,12 +18,16 @@ import { useToggle } from '../hooks/useToggle'
 import logout from '../utils/logout'
 import Logo from './Logo'
 import PropTypes from 'prop-types'
+import deleteConversation from '../utils/deleteConversation'
+
 
 
 
 const TopAppBar = ({ toggleSidebar }) => {
 
-  const { user } = useLoaderData();
+  const { user, conversations } = useLoaderData();
+  const params = useParams();
+  const submit = useSubmit();
   const [showMenu, setShowMenu] = useToggle();
   const navigation = useNavigation();
   const navigate = useNavigate();
@@ -35,6 +45,23 @@ const TopAppBar = ({ toggleSidebar }) => {
 
         <Logo classes="lg:hidden" />
       </div>
+
+      {params.conversationId && (
+        <IconBtn 
+          icon="delete"
+          classes="ms-auto me-1 lg:hidden"
+          onClick={() => {
+            const { title } = conversations.documents.find( // Se busca un title en conversations cuyo id coincida con params.conversationId
+              ({ $id }) => params.conversationId === $id
+            )
+            deleteConversation({ // Llamamos al deleteConversation con los datos necesarios
+              id: params.conversationId,
+              title,
+              submit
+            })
+          }}
+        />
+      )}
 
       <div className='menu-wrapper'>
         <IconBtn onClick={setShowMenu}>

@@ -5,6 +5,7 @@ import { redirect } from "react-router-dom";
 
 
 
+
 const userPromptAction = async (formData) => {
   
   const userPrompt = formData.get("user_prompt");                   // Obtiene el valor del inputField
@@ -47,12 +48,32 @@ const userPromptAction = async (formData) => {
   return redirect(`/${conversation.$id}`);	// Despues de crear la conversación, redirigimos a la misma :/app/:conversationId
 }
 
+const deleteConversationAction = async(formData) => {
+  const conversationId = formData.get("conversationId");
+  const conversationTitle = formData.get("conversation_title");
+
+  try {
+    await databases.deleteDocument( // Borramos la conversación de la base de datos
+      import.meta.env.VITE_APPWRITE_DATABASE_ID,
+      "conversations",
+      conversationId
+    );
+    return { conversationTitle }; 
+  }catch(error){
+    console.log(`Error deleting conversation: ${error.message}`);
+  }
+}
+
 const appAction = async ({ request }) => {
   const formData = await request.formData();
   const requestType = formData.get("request_type");
 
   if(requestType === "user_prompt"){
     return await userPromptAction(formData) // Si existe un user_prompt creamos una conversación y un chat con la respuesta de la AI
+  }
+
+  if(requestType === "delete_conversation"){
+    return await deleteConversationAction(formData)
   }
 }
 
