@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PageTitle from './components/PageTitle'
 import TopAppBar from './components/TopAppBar'
 import Sidebar from './components/Sidebar'
@@ -8,16 +8,30 @@ import { motion } from 'framer-motion'
 import PromptField from './components/promptField'
 import { Outlet, useParams, useNavigation, useActionData } from 'react-router-dom'
 import { useSnackbar } from './hooks/useSnackbar'
+import usePromptPreloader from './hooks/usePromptPreloader'
 
 
 const App = () => {
 
   const params = useParams();
   const navigation = useNavigation();
-  const actionData = useActionData(); // Returns the action data from the most recent POST navigation form submission
-console.log("actionData", actionData);
+  const actionData = useActionData(); // Devuelve la data de la action desde el más reciente POST/DELETE submit de un formulario
+
+  const chatHistoryRef = useRef();
+  const { promptPreloaderValue } = usePromptPreloader();
+
   const [isSidebarOpen, toggleSidebar] = useToggle();
   const { showSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    const chatHistory = chatHistoryRef.current;                    // Obtiene el elemento DOM actual referenciado por chatHistoryRef 
+    if(promptPreloaderValue){                                      // Si hay un user_prompt en navigation.formData
+      chatHistory.scroll({                                         // Desplazamos el chatHistory hasta el final
+        top: chatHistory.scrollHeight - chatHistory.clientHeight,  // (altura total del contenido del chat - altura visible del contenedor)
+        behavior: 'smooth'
+      })
+    }
+  },[chatHistoryRef, promptPreloaderValue])
 
   useEffect(() => {
     if(actionData?.conversationTitle){
@@ -25,7 +39,7 @@ console.log("actionData", actionData);
         message: `Deleted: ${actionData.conversationTitle} conversation`,
       })
     }
-  })
+  },[actionData, showSnackbar])
 
   const isNormalLoad = navigation.state === "loading" && !navigation.formData; // isNormalLoad es true cuando la página se carga y no hay formularios en la URL
 
@@ -45,7 +59,10 @@ console.log("actionData", actionData);
           <TopAppBar toggleSidebar={toggleSidebar} />
 
           {/* Main content */}
-          <div className='px-5 pb-5 flex flex-col overflow-y-auto'>
+          <div
+            ref={chatHistoryRef}
+            className='px-5 pb-5 flex flex-col overflow-y-auto'
+          >
             <div className='max-w-[840px] w-full mx-auto grow'>
               {isNormalLoad ? null : params.conversationId ? ( // Si la página "/" tiene un parámetro conversationId, mostramos el elemento asociado a la ruta "/:conversationId". outlet renderiza el componente de la ruta hija de app.js
                 <Outlet />
