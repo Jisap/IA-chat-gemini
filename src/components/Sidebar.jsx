@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import Logo from "./Logo"
 import { ExtendedFab, IconBtn } from './Button'
-import { NavLink, useLoaderData, useSubmit } from "react-router-dom"
+import { NavLink, useLoaderData, useSubmit, useParams } from "react-router-dom"
 import { motion } from "framer-motion"
 import deleteConversation from "../utils/deleteConversation"
 
@@ -15,6 +15,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const { documents } = conversations;
   //console.log("documents desde sidebar", documents);
   
+  const { conversationId } = useParams();
+
   const submit = useSubmit();
 
   return (
@@ -35,6 +37,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             text="New chat"
             classes="mb-4"
             onClick={toggleSidebar}
+            disabled={!conversationId}
           />
 
           <div className="overflow-y-auto -me-2 pe-1">
