@@ -1,8 +1,9 @@
 import PropTypes from "prop-types"
 import Logo from "./Logo"
 import { ExtendedFab, IconBtn } from './Button'
-import { NavLink, useLoaderData } from "react-router-dom"
+import { NavLink, useLoaderData, useSubmit } from "react-router-dom"
 import { motion } from "framer-motion"
+import deleteConversation from "../utils/deleteConversation"
 
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
@@ -14,6 +15,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   const { documents } = conversations;
   //console.log("documents desde sidebar", documents);
   
+  const submit = useSubmit();
+
   return (
     <>
       <motion.div 
@@ -60,7 +63,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                     icon="delete" 
                     size="small" 
                     classes="absolute top-1/2 right-1.5 -translate-y-[10px] z-10 opacity-0 group-hover:opacity-100 group:focus-within:opacity-100 hidden lg:grid" 
-                    title="Delete"   
+                    title="Delete"  
+                    onClick={() => deleteConversation({ id: item.$id, title: item.title, submit })}
                   />
                 </div>
               ))}

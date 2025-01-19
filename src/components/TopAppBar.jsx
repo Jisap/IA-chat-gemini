@@ -54,7 +54,7 @@ const TopAppBar = ({ toggleSidebar }) => {
             const { title } = conversations.documents.find( // Se busca un title en conversations cuyo id coincida con params.conversationId
               ({ $id }) => params.conversationId === $id
             )
-            deleteConversation({ // Llamamos al deleteConversation con los datos necesarios
+            deleteConversation({ // Llamamos al deleteConversation con los datos necesarios -> submit -> "/"
               id: params.conversationId,
               title,
               submit
